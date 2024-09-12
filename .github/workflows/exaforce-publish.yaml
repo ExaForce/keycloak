@@ -94,5 +94,5 @@ jobs:
           context: quarkus/container
           file: quarkus/container/Dockerfile
           push: ${{ env.PUSH }}
-          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak:${{env.BRANCH_NAME}}-${{ github.sha }}
+          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak:${{ github.sha }}
           platforms: "linux/amd64,linux/arm64"
