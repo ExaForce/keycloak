@@ -50,7 +50,7 @@ jobs:
       - name: Stage package artifacts for publish
         uses: actions/upload-artifact@v4
         with:
-          name: keycloak-tgz
+          name: keycloak-dist
           path: quarkus/dist/target/keycloak-*.tar.gz
 
   publish-docker:
@@ -60,7 +60,7 @@ jobs:
     needs:
       - build-keycloak
     steps:
-      - name: Checkout Vector
+      - name: Checkout keycloak
         uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -86,7 +86,7 @@ jobs:
       - name: Download staged package artifacts (x86_64-unknown-linux-gnu)
         uses: actions/download-artifact@v4
         with:
-          name: keycloak-tgz
+          name: keycloak-dist
           path: quarkus/dist
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -94,5 +94,5 @@ jobs:
           context: quarkus/container
           file: quarkus/container/Dockerfile
           push: ${{ env.PUSH }}
-          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/vector:${{env.BRANCH_NAME}}-${{ github.sha }}
+          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak:${{env.BRANCH_NAME}}-${{ github.sha }}
           platforms: "linux/amd64,linux/arm64"
