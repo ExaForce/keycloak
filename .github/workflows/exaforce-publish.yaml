@@ -87,16 +87,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: keycloak-dist
-          path: quarkus/dist
-      - name: debug
-        run: ls -la quarkus/dist/
+          path: quarkus/container
       - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
+        run: |
+          echo "SHORT_SHA=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
+          echo "KEYCLOAK_DIST=`ls quarkus/container/keycloak-*.tar.gz`" >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: quarkus/container
           file: quarkus/container/Dockerfile
           push: ${{ env.PUSH }}
+          build-args: |
+            KEYCLOAK_DIST=${{ env.KEYCLOAK_DIST }}
           tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak:${{ env.SHORT_SHA }}
           platforms: "linux/amd64,linux/arm64"
