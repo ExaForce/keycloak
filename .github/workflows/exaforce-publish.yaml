@@ -83,11 +83,13 @@ jobs:
         with:
           version: latest
           install: true
-      - name: Download staged package artifacts (x86_64-unknown-linux-gnu)
+      - name: Download staged package artifacts
         uses: actions/download-artifact@v4
         with:
           name: keycloak-dist
           path: quarkus/dist
+      - name: debug
+        run: ls -la quarkus/dist/
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
       - name: Build and push
