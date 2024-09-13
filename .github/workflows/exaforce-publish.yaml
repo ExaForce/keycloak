@@ -100,5 +100,5 @@ jobs:
           push: ${{ env.PUSH }}
           build-args: |
             KEYCLOAK_DIST=${{ env.KEYCLOAK_DIST }}
-          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak:${{ env.SHORT_SHA }}
+          tags: 157206707803.dkr.ecr.us-east-2.amazonaws.com/keycloak-base:${{ env.SHORT_SHA }}
           platforms: "linux/amd64,linux/arm64"
