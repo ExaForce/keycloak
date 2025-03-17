@@ -3,7 +3,7 @@ description: Caches Maven artifacts
 
 inputs:
   create-cache-if-it-doesnt-exist:
-    description: > 
+    description: >
       Only those callers which fill the cache with the right contents should set this to true to avoid creating a cache
       which contains too few or too many entries.
     required: false
@@ -19,7 +19,7 @@ runs:
 
     - id: cache-maven-repository
       name: Maven cache
-      uses: actions/cache@v4
+      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
       if: inputs.create-cache-if-it-doesnt-exist == 'true'
       with:
         # Two asterisks are needed to make the follow-up exclusion work

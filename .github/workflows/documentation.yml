@@ -29,7 +29,7 @@ jobs:
     outputs:
       documentation: ${{ steps.conditional.outputs.documentation }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - id: conditional
         uses: ./.github/actions/conditional
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: conditional
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - id: setup-java
         name: Setup Java
@@ -60,7 +60,7 @@ jobs:
 
       - id: upload-keycloak-documentation
         name: Upload Keycloak documentation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
         with:
           name: keycloak-documentation
           path: docs/documentation/dist/target/*.zip
@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: conditional
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - id: setup-java
         name: Setup Java
@@ -86,7 +86,7 @@ jobs:
         name: Build and verify Keycloak documentation
         shell: bash
         run: |
-          ./mvnw install -Dtest=ExternalLinksTest -am -pl docs/documentation/tests -e -Pdocumentation 
+          ./mvnw install -Dtest=ExternalLinksTest -am -pl docs/documentation/tests -e -Pdocumentation
 
   check:
     name: Status Check - Keycloak Documentation
@@ -96,7 +96,7 @@ jobs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: ./.github/actions/status-check
         with:
           jobs: ${{ toJSON(needs) }}

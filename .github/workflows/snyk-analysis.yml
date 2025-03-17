@@ -1,6 +1,6 @@
 name: Snyk
 
-on: 
+on:
   workflow_dispatch:
 
 env:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'keycloak/keycloak'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Build Keycloak
         uses: ./.github/actions/build-keycloak

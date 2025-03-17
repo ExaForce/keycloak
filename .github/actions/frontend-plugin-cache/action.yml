@@ -10,7 +10,7 @@ runs:
       run: |
         echo "version=$(mvn help:evaluate -Dexpression=pnpm.version -q -DforceStdout)" >> $GITHUB_OUTPUT
 
-    - uses: actions/cache@v4
+    - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
       name: Cache PNPM store
       with:
         # See: https://pnpm.io/npmrc#store-dir

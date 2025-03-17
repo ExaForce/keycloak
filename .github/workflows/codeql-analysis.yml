@@ -31,7 +31,7 @@ jobs:
       java: ${{ steps.conditional.outputs.codeql-java }}
       themes: ${{ steps.conditional.outputs.codeql-themes }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - id: conditional
         uses: ./.github/actions/conditional
@@ -47,10 +47,10 @@ jobs:
       conclusion: ${{ steps.check.outputs.conclusion }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@80f993039571a6de66594ecaa432875a6942e8e0
         with:
           languages: java
 
@@ -58,7 +58,7 @@ jobs:
         uses: ./.github/actions/build-keycloak
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@80f993039571a6de66594ecaa432875a6942e8e0
         with:
           wait-for-processing: true
         env:
@@ -73,10 +73,10 @@ jobs:
       conclusion: ${{ steps.check.outputs.conclusion }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@80f993039571a6de66594ecaa432875a6942e8e0
         env:
           CODEQL_ACTION_EXTRA_OPTIONS: '{"database":{"finalize":["--no-run-unnecessary-builds"]}}'
         with:
@@ -84,7 +84,7 @@ jobs:
           source-root: themes/src/main/
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@80f993039571a6de66594ecaa432875a6942e8e0
         with:
           wait-for-processing: true
         env:
@@ -99,7 +99,7 @@ jobs:
       - themes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: ./.github/actions/status-check
         with:
           jobs: ${{ toJSON(needs) }}
