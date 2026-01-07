@@ -23,7 +23,7 @@ env:
 jobs:
   build-keycloak:
     name: Build keycloak
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
       - name: Checkout Keycloak
@@ -55,7 +55,7 @@ jobs:
 
   publish-docker:
     name: Publish to Docker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     needs:
       - build-keycloak
